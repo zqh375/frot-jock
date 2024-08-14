@@ -1,0 +1,21 @@
+
+
+services:
+  app:
+    container_name: my-node-app-container
+    build: .
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npm run dev -- --host
+    environment:
+      NODE_ENV: development
+      networks:
+        -my-network2
+
+networks:
+  my-network2:
+    driver: bridge
+
